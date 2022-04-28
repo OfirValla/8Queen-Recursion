@@ -2,12 +2,7 @@ import time
 
 
 def create_empty_board(size=8):
-    board = []
-    for row_idx in range(size):
-        board.append([])
-        for column_idx in range(size):
-            board[row_idx].append(0)
-    return board
+    return [[0 for _ in range(size)] for _ in range(size)]
 
 
 def is_queen_possible(board, row_idx, column_idx, used_columns):
@@ -60,8 +55,10 @@ def solve_8_queens_optimized(board, row_idx=0, used_columns=[]):
 
 if __name__ == '__main__':
     print("\n8Queen function V3:")
+    empty_board = create_empty_board(8)
+
     start_time = time.time()
-    result_optimized = solve_8_queens_optimized(create_empty_board(8))
+    result_optimized = solve_8_queens_optimized(empty_board)
     end_time = time.time()
     for row in result_optimized:
         for column in row:
