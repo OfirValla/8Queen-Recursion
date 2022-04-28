@@ -10,7 +10,11 @@ def create_empty_board(size=8):
     return board
 
 
-def is_queen_possible(board, row_idx, column_idx):
+def is_queen_possible(board, row_idx, column_idx, used_columns):
+    # If there is a queen in the current column -> False
+    if column_idx in used_columns:
+        return False
+
     # Check for queens in the diagonal
     for i in range(len(board)):
         for j in range(len(board)):
@@ -32,12 +36,8 @@ def solve_8_queens_optimized(board, row_idx=0, used_columns=[]):
         if board[row_idx][column_idx] == 1:
             continue
 
-        # If there is a queen in the current column -> continue
-        if column_idx in used_columns:
-            continue
-
         # If we can't place a queen in the current cell -> continue
-        if not is_queen_possible(board, row_idx, column_idx):
+        if not is_queen_possible(board, row_idx, column_idx, used_columns):
             continue
 
         # Place a queen in the current cell
